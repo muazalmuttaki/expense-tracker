@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expense Tracker</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="container">
+
+        <header class="header">
+            <div>
+                <h1>Expense Tracker</h1>
+                <p>Manage your money smartly.</p>
+            </div>
+
+            <button id="theme-toggle" class="theme-toggle">
+                🌙 Dark Mode
+            </button>
+        </header>
+
+        <section class="balance-card">
+            <h3>Total Balance</h3>
+            <h1 id="balance">৳0</h1>
+        </section>
+
+        <section class="summary">
+            <div class="card income">
+                <h3>Income</h3>
+                <h2 id="income">৳0</h2>
+            </div>
+
+            <div class="card expense">
+                <h3>Expense</h3>
+                <h2 id="expense">৳0</h2>
+            </div>
+        </section>
+
+        <section class="transaction-form">
+            <h2>Add Transaction</h2>
+
+            <input type="text" id="title" placeholder="Transaction Name">
+
+            <input type="number" id="amount" placeholder="Amount">
+
+            <select id="category">
+                <option value="Other">Select Category</option>
+                <option value="Salary">Salary</option>
+                <option value="Food">Food</option>
+                <option value="Transport">Transport</option>
+                <option value="Shopping">Shopping</option>
+                <option value="Bills">Bills</option>
+                <option value="Education">Education</option>
+                <option value="Other">Other</option>
+            </select>
+
+            <input type="date" id="date">
+
+            <select id="type">
+                <option value="income">Income</option>
+                <option value="expense">Expense</option>
+            </select>
+
+            <button id="add-btn">Add Transaction</button>
+        </section>
+
+        
+        <section class="dashboard-stats">
+            <h2>Dashboard Statistics</h2>
+
+            <div class="summary">
+                <div class="card">
+                    <h3>Total Transactions</h3>
+                    <h2 id="total-transactions">0</h2>
+                </div>
+
+                <div class="card income">
+                    <h3>Income Transactions</h3>
+                    <h2 id="income-count">0</h2>
+                </div>
+
+                <div class="card expense">
+                    <h3>Expense Transactions</h3>
+                    <h2 id="expense-count">0</h2>
+                </div>
+            </div>
+        </section>
+
+
+        <section class="monthly-summary">
+        <h2>Monthly Summary</h2>
+
+        <div class="summary">
+            <div class="card income">
+                <h3>Monthly Income</h3>
+                <h2 id="monthly-income">৳0</h2>
+            </div>
+
+            <div class="card expense">
+                <h3>Monthly Expense</h3>
+                <h2 id="monthly-expense">৳0</h2>
+            </div>
+        </div>
+
+        <div class="transaction-form">
+            <h2>Expense by Category</h2>
+            <canvas id="expense-chart"></canvas>
+        </div>
+        </section>
+
+        
+        <section class="monthly-history">
+            <h2>Monthly History</h2>
+
+            <div class="month-filter">
+                <label for="history-month">Select Month</label>
+                <input type="month" id="history-month">
+            </div>
+
+            <div class="summary">
+                <div class="card income">
+                    <h3>Monthly Income</h3>
+                    <h2 id="history-income">৳0</h2>
+                </div>
+
+                <div class="card expense">
+                    <h3>Monthly Expense</h3>
+                    <h2 id="history-expense">৳0</h2>
+                </div>
+            </div>
+
+            <div class="balance-card">
+                <h3>Monthly Balance</h3>
+                <h1 id="history-balance">৳0</h1>
+            </div>
+
+            <h3 class="history-title">Transactions</h3>
+
+            <ul id="monthly-transaction-list"></ul>
+        </section>
+
+
+        <section class="history">
+            <h2>Transaction History</h2>
+            <input
+            type="text"
+            id="search"
+            placeholder="Search transactions..."
+            >           
+            <button type="button" id="export-btn" class="export-btn">
+            ⬇ Export CSV
+            </button>
+            <ul id="transaction-list"></ul>
+        </section>
+
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

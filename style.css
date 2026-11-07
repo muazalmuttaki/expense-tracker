@@ -1,0 +1,547 @@
+
+/* =========================
+   1. Global Settings
+========================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background: #f1f5f9;
+    color: #1e293b;
+    padding: 28px 16px;
+    line-height: 1.6;
+    transition: background 0.3s, color 0.3s;
+}
+
+.container {
+    max-width: 850px;
+    width: 100%;
+    margin: auto;
+}
+
+/* =========================
+   2. Header
+========================= */
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+header h1 {
+    font-size: 28px;
+    color: #0f172a;
+    letter-spacing: -0.5px;
+}
+
+header p {
+    color: #64748b;
+    margin-top: 5px;
+    font-size: 14px;
+}
+
+.theme-toggle {
+    width: auto;
+    padding: 10px 16px;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    background: white;
+    color: #1e293b;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+/* =========================
+   3. Balance Card
+========================= */
+
+.balance-card {
+    background: linear-gradient(135deg, #1e293b, #334155);
+    color: white;
+    padding: 28px;
+    border-radius: 18px;
+    margin-bottom: 22px;
+    box-shadow: 0 8px 25px rgba(15, 23, 42, 0.12);
+}
+
+.balance-card h3 {
+    color: #cbd5e1;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.balance-card h1 {
+    font-size: 36px;
+    margin-top: 10px;
+    word-break: break-word;
+}
+
+/* =========================
+   4. Summary Cards
+========================= */
+
+.summary {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+    margin-bottom: 22px;
+}
+
+.card {
+    background: white;
+    padding: 22px;
+    border-radius: 16px;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+    transition: transform 0.2s, box-shadow 0.2s,
+                background 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 22px rgba(0, 0, 0, 0.07);
+}
+
+.card h3 {
+    font-size: 14px;
+    color: #64748b;
+    font-weight: 600;
+}
+
+.card h2 {
+    margin-top: 8px;
+    font-size: 25px;
+    word-break: break-word;
+}
+
+.income h2 {
+    color: #16a34a;
+}
+
+.expense h2 {
+    color: #dc2626;
+}
+
+/* =========================
+   5. Forms & History
+========================= */
+
+.transaction-form,
+.history,
+.monthly-summary {
+    background: white;
+    padding: 24px;
+    border-radius: 16px;
+    margin-bottom: 22px;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+    transition: background 0.3s;
+}
+
+.transaction-form h2,
+.history h2,
+.monthly-summary h2 {
+    font-size: 19px;
+    margin-bottom: 18px;
+    color: #1e293b;
+}
+
+/* Inputs */
+
+input,
+select {
+    width: 100%;
+    padding: 13px 15px;
+    margin-bottom: 13px;
+    border: 1px solid #cbd5e1;
+    border-radius: 10px;
+    outline: none;
+    font-size: 16px;
+    background: #fff;
+    color: #1e293b;
+    transition: border 0.2s, box-shadow 0.2s;
+}
+
+input:focus,
+select:focus {
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+}
+
+/* Buttons */
+
+button {
+    width: 100%;
+    padding: 13px;
+    border: none;
+    border-radius: 10px;
+    background: #2563eb;
+    color: white;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.2s;
+}
+
+button:hover {
+    background: #1d4ed8;
+}
+
+button:active {
+    transform: scale(0.98);
+}
+
+/* =========================
+   6. Transaction History
+========================= */
+
+#transaction-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.transaction-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+    padding: 16px;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    background: #f8fafc;
+    transition: background 0.2s;
+}
+
+.transaction-item:hover {
+    background: #f1f5f9;
+}
+
+.transaction-info {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.transaction-info strong {
+    font-size: 15px;
+    color: #1e293b;
+}
+
+.transaction-info small {
+    color: #64748b;
+    font-size: 12px;
+}
+
+.amount-income {
+    color: #16a34a;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.amount-expense {
+    color: #dc2626;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+/* Edit & Delete */
+
+.transaction-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.transaction-actions button {
+    width: auto;
+    padding: 8px 13px;
+    font-size: 13px;
+    border-radius: 8px;
+}
+
+.edit-btn {
+    background: #e0ecff;
+    color: #2563eb;
+}
+
+.edit-btn:hover {
+    background: #cbdfff;
+}
+
+.delete-btn {
+    background: #fee2e2;
+    color: #dc2626;
+}
+
+.delete-btn:hover {
+    background: #fecaca;
+}
+
+/* =========================
+   7. Expense Chart
+========================= */
+
+#expense-chart {
+    width: 100%;
+    max-height: 320px;
+}
+
+/* =========================
+   8. Dark Mode
+========================= */
+
+body.dark-mode {
+    background: #0f172a;
+    color: #f8fafc;
+}
+
+body.dark-mode header h1,
+body.dark-mode header p {
+    color: #f8fafc;
+}
+
+body.dark-mode .card,
+body.dark-mode .transaction-form,
+body.dark-mode .history,
+body.dark-mode .monthly-summary {
+    background: #1e293b;
+    border-color: #334155;
+}
+
+body.dark-mode .card h3,
+body.dark-mode .card h2,
+body.dark-mode .transaction-form h2,
+body.dark-mode .history h2,
+body.dark-mode .monthly-summary h2 {
+    color: #f8fafc;
+}
+
+body.dark-mode input,
+body.dark-mode select {
+    background: #334155;
+    color: white;
+    border-color: #475569;
+}
+
+body.dark-mode input::placeholder {
+    color: #cbd5e1;
+}
+
+body.dark-mode .transaction-item {
+    background: #263449;
+    border-color: #475569;
+}
+
+body.dark-mode .transaction-item:hover {
+    background: #334155;
+}
+
+body.dark-mode .transaction-info strong {
+    color: #f8fafc;
+}
+
+body.dark-mode .transaction-info small {
+    color: #cbd5e1;
+}
+
+body.dark-mode .theme-toggle {
+    background: #334155;
+    color: white;
+    border-color: #475569;
+}
+
+/* =========================
+   9. Responsive Design
+========================= */
+
+@media (max-width: 600px) {
+    body {
+        padding: 18px 12px;
+    }
+
+    .header {
+        align-items: flex-start;
+        flex-wrap: wrap;
+    }
+
+    header h1 {
+        font-size: 24px;
+    }
+
+    .theme-toggle {
+        padding: 9px 12px;
+        font-size: 12px;
+    }
+
+    .balance-card {
+        padding: 23px 18px;
+    }
+
+    .balance-card h1 {
+        font-size: 30px;
+    }
+
+    .summary {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    .card {
+        padding: 18px;
+    }
+
+    .transaction-form,
+    .history,
+    .monthly-summary {
+        padding: 18px 14px;
+    }
+
+    .transaction-item {
+        align-items: flex-start;
+    }
+
+    .transaction-actions {
+        width: 100%;
+        justify-content: flex-end;
+        padding-top: 10px;
+        border-top: 1px dashed #cbd5e1;
+    }
+
+    .transaction-actions button {
+        flex: 1;
+    }
+}
+/* CSV Export Button */
+
+.export-btn {
+    width: auto;
+    padding: 10px 18px;
+    margin-bottom: 15px;
+    background: #0f766e;
+    color: white;
+    font-size: 14px;
+    border-radius: 8px;
+}
+
+.export-btn:hover {
+    background: #115e59;
+}
+
+body.dark-mode .export-btn {
+    background: #0f766e;
+    color: white;
+}
+
+
+/* Monthly History */
+
+.monthly-history {
+    background: white;
+    padding: 24px;
+    border-radius: 16px;
+    margin-bottom: 22px;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+}
+
+.monthly-history > h2 {
+    font-size: 19px;
+    margin-bottom: 18px;
+}
+
+.month-filter label {
+    display: block;
+    margin-bottom: 7px;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.history-title {
+    margin: 15px 0;
+    font-size: 17px;
+}
+
+body.dark-mode .monthly-history {
+    background: #1e293b;
+    border-color: #334155;
+}
+
+body.dark-mode .monthly-history h2,
+body.dark-mode .monthly-history h3,
+body.dark-mode .monthly-history label {
+    color: #f8fafc;
+}
+
+
+/* Dashboard Statistics */
+
+.dashboard-stats {
+    margin-bottom: 22px;
+}
+
+.dashboard-stats > h2 {
+    font-size: 19px;
+    margin-bottom: 15px;
+}
+
+.dashboard-stats .summary {
+    grid-template-columns: repeat(3, 1fr);
+}
+
+body.dark-mode .dashboard-stats h2,
+body.dark-mode .dashboard-stats h3 {
+    color: #f8fafc;
+}
+
+@media (max-width: 600px) {
+    .dashboard-stats .summary {
+        grid-template-columns: 1fr;
+    }
+}
+/* Empty State */
+
+.empty-state {
+    text-align: center;
+    padding: 35px 15px;
+    color: #64748b;
+    background: #f8fafc;
+    border: 1px dashed #cbd5e1;
+    border-radius: 12px;
+    list-style: none;
+}
+
+.empty-state span {
+    font-size: 35px;
+}
+
+.empty-state h3 {
+    margin: 10px 0 5px;
+    font-size: 17px;
+    color: #1e293b;
+}
+
+.empty-state p {
+    font-size: 13px;
+}
+
+body.dark-mode .empty-state {
+    background: #263449;
+    border-color: #475569;
+}
+
+body.dark-mode .empty-state h3,
+body.dark-mode .empty-state p {
+    color: #f8fafc;
+}
